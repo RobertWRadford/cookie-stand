@@ -18,7 +18,8 @@ var seattle = {
 	maxCustomer: 65,
 	avgCookies: 6.3,
 	randCustomer: function () {
-		return (Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer));
+		var customerCount = Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer)
+		return customerCount;
 	},
 	salesHourly: function() {
 		var hourlySales = [];
@@ -47,7 +48,8 @@ var tokyo = {
 	avgCookies: 1.2,
 	salesHourly: [],
 	randCustomer: function () {
-		return (Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer));
+		var customerCount = Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer)
+		return customerCount;
 	},
 	salesHourly: function() {
 		var hourlySales = [];
@@ -75,7 +77,8 @@ var dubai = {
 	avgCookies: 3.7,
 	salesHourly: [],
 	randCustomer: function () {
-		return (Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer));
+		var customerCount = Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer)
+		return customerCount;
 	},
 	salesHourly: function() {
 		var hourlySales = [];
@@ -103,7 +106,8 @@ var paris = {
 	avgCookies: 2.3,
 	salesHourly: [],
 	randCustomer: function () {
-		return (Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer));
+		var customerCount = Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer)
+		return customerCount;
 	},
 	salesHourly: function() {
 		var hourlySales = [];
@@ -131,7 +135,8 @@ var lima = {
 	avgCookies: 4.6,
 	salesHourly: [],
 	randCustomer: function () {
-		return (Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer));
+		var customerCount = Math.floor((Math.random() * (this.minCustomer - this.minCustomer)) + this.minCustomer)
+		return customerCount;
 	},
 	salesHourly: function() {
 		var hourlySales = [];
