@@ -1,0 +1,17 @@
+div.storeLocations {
+  margin: 5px;
+  padding: 10px;
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  min-width: 160px;
+}
+
+ul.storeLocations {
+  padding-left: 15px;
+}
+
+h1.storeLocations {
+  color: rgb(100, 62, 0);
+  font-size: 150%;
+}

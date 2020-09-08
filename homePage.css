@@ -1,0 +1,15 @@
+#titleHeader {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	margin-top: 280px;
+	font-size: 64px;
+	color: DarkSalmon;
+}
+#linkToSales {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	font-size: 48px;
+	transform: translate(-50%, -50%);
+}
