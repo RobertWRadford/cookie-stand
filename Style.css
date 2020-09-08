@@ -1,4 +1,4 @@
-section.storeLocations {
+div.storeLocations {
   margin: 5px;
   padding: 10px;
   display: inline-block;
@@ -7,11 +7,11 @@ section.storeLocations {
   min-width: 160px;
 }
 
-section.storeLocations > ul {
+ul.storeLocations {
   padding-left: 15px;
 }
 
-section.storeLocations > ul > lh {
+h1.storeLocations {
   color: rgb(100, 62, 0);
   font-size: 150%;
 }

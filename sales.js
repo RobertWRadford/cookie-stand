@@ -102,15 +102,21 @@ function sales_DOM() {
 		var salesArr = salesHourly(stores[i].minCustomer, stores[i].maxCustomer, stores[i].avgCookies);
 
 		//create seperate sections for each store
-		var section = document.createElement("section");
-		locations.append(section);
-		section.textContent = stores[i].name;
-		section.setAttribute("id", stores[i].name);
-		section.setAttribute("class", "storeLocations")
+		var divSet = document.createElement("div");
+		locations.append(divSet);
+		divSet.setAttribute("id", stores[i].name);
+		divSet.setAttribute("class", "storeLocations")
+		var divHeader = document.createElement('h1');
+		divSet.append(divHeader);
+		divHeader.textContent = stores[i].name;
+		divHeader.setAttribute("id", stores[i].name);
+		divHeader.setAttribute("class", "storeLocations");
 
 		//append an unorder list to each store
 		var ul = document.createElement("ul");
-		section.append(ul);
+		divSet.append(ul);
+		ul.setAttribute("id", stores[i].name);
+		ul.setAttribute("class", "storeLocations");
 
 		//for each store ul, create hourly breakdown
 		for(var j = 0; j < salesArr.length; j++){
