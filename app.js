@@ -151,18 +151,18 @@ function sales_DOM() {
 		var salesArr = stores[i].salesHourly();
 
 		//create seperate sections for each store
-		var section = document.createElement('section');
+		var section = document.createElement("section");
 		locations.append(section);
 		section.textContent = stores[i].name;
-		section.setAttribute('id', stores[i].name);
+		section.setAttribute("id", stores[i].name);
 
 		//append an unorder list to each store
-		var ul = document.createElement('ul');
+		var ul = document.createElement("ul");
 		section.append(ul);
 
 		//for each store ul, create hourly breakdown
 		for(var j = 0; j < salesArr.length; j++){
-			var li = document.createElement('li');
+			var li = document.createElement("li");
 			li.textContent = salesArr[j];
 			ul.append(li);
 		}
