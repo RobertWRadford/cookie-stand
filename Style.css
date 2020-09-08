@@ -1,4 +1,4 @@
-section.salesList {
+section.locations {
   margin: 5px;
   padding: 10px;
   display: inline-block;
@@ -7,16 +7,11 @@ section.salesList {
   min-width: 160px;
 }
 
-section.salesList > ul {
+section.locations > ul {
   padding-left: 15px;
 }
 
-section.salesList > ul > lh {
+section.locations > ul > lh {
   color: rgb(100, 62, 0);
   font-size: 150%;
-}
-
-section.salesList .salesTotal {
-  margin: 0;
-  font-weight: bold;
 }
