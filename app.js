@@ -144,7 +144,7 @@ var lima = {
 
 function sales_DOM() {
 	var locations = document.getElementById("locations");
-	var stores = [Seattle, Tokyo, Dubai, Paris, Lima];
+	var stores = [seattle, tokyo, dubai, paris, lima];
 
 	for(var i = 0; i < stores.length; i++){
 		//create the estimated spreadhseet
