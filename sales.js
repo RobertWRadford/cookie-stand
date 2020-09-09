@@ -109,15 +109,6 @@ var dubai = new Store('Dubai', 11, 38, 3.7);
 var paris = new Store('Paris', 20, 38, 2.3);
 var lima = new Store('Lima', 2, 16, 4.6);
 
-times_DOM();
-
-for (var i = 0; i < stores.length; i++) {
-	salesHourly(stores[i]);
-	stores[i].renderStoreRow();
-}
-
-totals_DOM();
-
 function salesHourly(storeName) {
 
 	var customerCount = 0;
@@ -216,3 +207,11 @@ function totals_DOM(){
 	}
 }
 
+times_DOM();
+
+for (var i = 0; i < stores.length; i++) {
+	salesHourly(stores[i]);
+	stores[i].renderStoreRow();
+}
+
+totals_DOM();
