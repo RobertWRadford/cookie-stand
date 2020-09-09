@@ -110,9 +110,10 @@ function salesHourly(storeName) {
 
 	var customerCount = 0;
 	var totalCookies = 0;
+	var trafficRates = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4];
 	for (var i = 6; i < 20; i++){
-		customerCount = Math.floor(Math.random() * (storeName.maxCust - storeName.minCust)) + storeName.minCust;
-		totalCookies+=Math.floor(customerCount*storeName.avgCookies);
+		customerCount = Math.floor(trafficRates[i-6] * storeName.maxCust);
+		totalCookies += Math.floor(customerCount*storeName.avgCookies);
 		storeName.salesArr.push(Math.floor(customerCount * storeName.avgCookies));
 	}
 	storeName.salesArr.push(totalCookies);
@@ -121,7 +122,6 @@ function salesHourly(storeName) {
 
 function times_DOM() {
 	var locations = document.getElementById("locations");
-	var allStoresSales = [];
 
 	//create the data table tr is row, th is header, td is data cell
 	var table = document.createElement("table");
