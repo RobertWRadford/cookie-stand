@@ -29,8 +29,9 @@ table {
 }
 
 th, td {
-	padding: 5px;
-	border: 1px solid black;
+	padding: 8px;
+	border: 2px solid black;
+	font-size: 24px;
 	text-align: center;
 }
 
@@ -39,5 +40,5 @@ th, td {
 }
 
 h1 {
-	font-size: 36px;
+	font-size: 48px;
 }
