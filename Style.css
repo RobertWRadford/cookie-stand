@@ -15,7 +15,16 @@ h1.storeLocations {
   color: rgb(100, 62, 0);
   font-size: 150%;
 }*/
+table #dataTable{
+	position: fixed;
+}
+
+table #anotherDataTable {
+	position: relative;
+}
+
 table {
+	display: block;
 	border-collapse: collapse;
 }
 
@@ -27,4 +36,8 @@ th, td {
 
 #emptyCell {
 	background-color: black;
+}
+
+h1 {
+	font-size: 36px;
 }
