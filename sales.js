@@ -191,15 +191,18 @@ function totals_DOM(){
 	totalHeaderDup.textContent = 'Totals';
 	totalRowCookies.append(totalHeader);
 	totalRowTossers.append(totalHeaderDup);
-	for (var h = 6; h < 21; h++){
+	
+	loop1: for (var h = 6; h < 21; h++){
 		var totalCountCookies = document.createElement('td');
 		var totalCountTossers = document.createElement('td');
 		var tallyCookies = 0;
 		var tallyTossers = 0;
-		for (var s = 0; s < stores.length; s++){
+
+		loop2: for (var s = 0; s < stores.length; s++){
 			tallyCookies += stores[s].salesArr[h-6];
 			tallyTossers += stores[s].tossersNeeded[h-6];
 		}
+
 		totalCountCookies.textContent = tallyCookies;
 		totalRowCookies.append(totalCountCookies);
 		totalCountTossers.textContent = tallyTossers;
