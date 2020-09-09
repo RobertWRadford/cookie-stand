@@ -156,44 +156,30 @@ function times_DOM() {
 	locations.append(secondTable);
 	secondTable.setAttribute("id", "anotherDataTable")
 
-	//create the time headers row
 	var timesRow = document.createElement('tr');
-	var timesRowDup = document.createElement('tr');
 	table.append(timesRow);
-	secondTable.append(timesRowDup);
 	var emptyCell = document.createElement('td');
-	var emptyCellDup = document.createElement('td');
 	emptyCell.setAttribute('id', 'emptyCell');
-	emptyCellDup.setAttribute('id', 'emptyCell');
 	timesRow.append(emptyCell);
-	timesRowDup.append(emptyCellDup);
 
 	for (h = 6; h < 20; h++){
 		var timeSlot = document.createElement('th');
-		var timeSlotDup = document.createElement('th');
 		if (h < 12){
 			timeSlot.textContent = (h + ':00am');
-			timeSlotDup.textContent = (h + ':00am');
 			timesRow.append(timeSlot);
-			timesRowDup.append(timeSlotDup);
 		} else if (h == 12) {
 			timeSlot.textContent = ('12:00pm');
-			timeSlotDup.textContent = ('12:00pm');
 			timesRow.append(timeSlot);
-			timesRowDup.append(timeSlotDup);
 		} else {
 			timeSlot.textContent = (h-12 + ':00pm');
-			timeSlotDup.textContent = (h-12 + ':00pm');
 			timesRow.append(timeSlot);
-			timesRowDup.append(timeSlotDup);
 		}
 	}
 	var timeSlot = document.createElement('th');
-	var timeSlotDup = document.createElement('th');
 	timeSlot.textContent = 'Daily Location Total';
-	timeSlotDup.textContent = 'Daily Location Total';
 	timesRow.append(timeSlot);
-	timesRowDup.append(timeSlotDup);
+	let timesRowNew = timesRow.cloneNode(true);
+	secondTable.append(timesRowNew);
 }
 
 function totals_DOM(){
