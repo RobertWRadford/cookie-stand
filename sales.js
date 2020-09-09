@@ -112,6 +112,7 @@ function salesHourly(storeName) {
 	var totalCookies = 0;
 	var trafficRates = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4];
 	for (var i = 6; i < 20; i++){
+		//customerCount = Math.floor((Math.random() * (storeName.maxCust - storeName.minCust)) + storeName.minCust);
 		customerCount = Math.floor(trafficRates[i-6] * storeName.maxCust);
 		totalCookies += Math.floor(customerCount*storeName.avgCookies);
 		storeName.salesArr.push(Math.floor(customerCount * storeName.avgCookies));
