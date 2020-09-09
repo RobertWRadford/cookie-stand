@@ -70,23 +70,35 @@ function Store(name, minCust, maxCust, avgCookies){
 	this.maxCust = maxCust;
 	this.avgCookies = avgCookies;
 	this.salesArr = [];
+	this.tossersNeeded = [];
 	stores.push(this);
 }
 
 Store.prototype.renderStoreRow = function(){
 	//find data table
 	var dataTable = document.getElementById("dataTable");
+	var otherDataTable = document.getElementById('anotherDataTable');
 
 	//Create store sales row
-	var storeRow = document.createElement('tr');
-	dataTable.append(storeRow);
+	var storeRowCookie = document.createElement('tr');
+	dataTable.append(storeRowCookie);
+	var storeRowTosser = document.createElement('tr');
+	otherDataTable.append(storeRowTosser);
+
+	//attach cells
 	var storeNameCell = document.createElement('th');
+	var storeNameCellDup = document.createElement('th');
 	storeNameCell.textContent = this.name;
-	storeRow.append(storeNameCell);
+	storeNameCellDup.textContent = this.name;
+	storeRowCookie.append(storeNameCell);
+	storeRowTosser.append(storeNameCellDup);
 	for (var j = 6; j < 21; j++){
 		var storeSales = document.createElement('td');
 		storeSales.textContent = this.salesArr[j-6];
-		storeRow.append(storeSales);
+		storeRowCookie.append(storeSales);
+		var storeTossers = document.createElement('td');
+		storeTossers.textContent = this.tossersNeeded[j-6];
+		storeRowTosser.append(storeTossers);
 	}
 }
 
@@ -110,14 +122,23 @@ function salesHourly(storeName) {
 
 	var customerCount = 0;
 	var totalCookies = 0;
+	var totalTossers = 0;
 	var trafficRates = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4];
 	for (var i = 6; i < 20; i++){
 		//customerCount = Math.floor((Math.random() * (storeName.maxCust - storeName.minCust)) + storeName.minCust);
 		customerCount = Math.floor(trafficRates[i-6] * storeName.maxCust);
+		if (customerCount / 20 <= 2) {
+			storeName.tossersNeeded.push(2);
+			totalTossers += 2;
+		} else {
+			storeName.tossersNeeded.push(Math.ceil(customerCount / 20));
+			totalTossers += Math.ceil(customerCount / 20);
+		}
 		totalCookies += Math.floor(customerCount*storeName.avgCookies);
 		storeName.salesArr.push(Math.floor(customerCount * storeName.avgCookies));
 	}
 	storeName.salesArr.push(totalCookies);
+	storeName.tossersNeeded.push(totalTossers);
 	return
 }
 
@@ -128,47 +149,84 @@ function times_DOM() {
 	var table = document.createElement("table");
 	locations.append(table);
 	table.setAttribute("id", "dataTable");
+	var seperatingHeader = document.createElement('h1')
+	seperatingHeader.textContent = 'Tossers Needed For Each Store By Hour';
+	locations.append(seperatingHeader);
+	var secondTable = document.createElement('table');
+	locations.append(secondTable);
+	secondTable.setAttribute("id", "anotherDataTable")
 
 	//create the time headers row
 	var timesRow = document.createElement('tr');
+	var timesRowDup = document.createElement('tr');
 	table.append(timesRow);
+	secondTable.append(timesRowDup);
 	var emptyCell = document.createElement('td');
+	var emptyCellDup = document.createElement('td');
 	emptyCell.setAttribute('id', 'emptyCell');
+	emptyCellDup.setAttribute('id', 'emptyCell');
 	timesRow.append(emptyCell);
+	timesRowDup.append(emptyCellDup);
+
 	for (h = 6; h < 20; h++){
 		var timeSlot = document.createElement('th');
+		var timeSlotDup = document.createElement('th');
 		if (h < 12){
 			timeSlot.textContent = (h + ':00am');
+			timeSlotDup.textContent = (h + ':00am');
 			timesRow.append(timeSlot);
+			timesRowDup.append(timeSlotDup);
 		} else if (h == 12) {
 			timeSlot.textContent = ('12:00pm');
+			timeSlotDup.textContent = ('12:00pm');
 			timesRow.append(timeSlot);
+			timesRowDup.append(timeSlotDup);
 		} else {
 			timeSlot.textContent = (h-12 + ':00pm');
+			timeSlotDup.textContent = (h-12 + ':00pm');
 			timesRow.append(timeSlot);
+			timesRowDup.append(timeSlotDup);
 		}
 	}
 	var timeSlot = document.createElement('th');
+	var timeSlotDup = document.createElement('th');
 	timeSlot.textContent = 'Daily Location Total';
+	timeSlotDup.textContent = 'Daily Location Total';
 	timesRow.append(timeSlot);
+	timesRowDup.append(timeSlotDup);
 }
 
 function totals_DOM(){
+	//tables
 	var dataTable = document.getElementById('dataTable');
-	//create the total row
-	var totalRow = document.createElement('tr');
-	dataTable.append(totalRow);
+	var otherDataTable = document.getElementById('anotherDataTable')
+
+	//create the total row for dataTable and otherDataTable
+	var totalRowCookies = document.createElement('tr');
+	dataTable.append(totalRowCookies);
+	var totalRowTossers = document.createElement('tr');
+	otherDataTable.append(totalRowTossers);
+
+	//headers for each total row
 	var totalHeader = document.createElement('th');
 	totalHeader.textContent = 'Totals';
-	totalRow.append(totalHeader);
+	var totalHeaderDup = document.createElement('th');
+	totalHeaderDup.textContent = 'Totals';
+	totalRowCookies.append(totalHeader);
+	totalRowTossers.append(totalHeaderDup);
 	for (var h = 6; h < 21; h++){
-		var totalCount = document.createElement('td');
-		var tally = 0;
+		var totalCountCookies = document.createElement('td');
+		var totalCountTossers = document.createElement('td');
+		var tallyCookies = 0;
+		var tallyTossers = 0;
 		for (var s = 0; s < stores.length; s++){
-			tally += stores[s].salesArr[h-6];
+			tallyCookies += stores[s].salesArr[h-6];
+			tallyTossers += stores[s].tossersNeeded[h-6];
 		}
-		totalCount.textContent = tally;
-		totalRow.append(totalCount);
+		totalCountCookies.textContent = tallyCookies;
+		totalRowCookies.append(totalCountCookies);
+		totalCountTossers.textContent = tallyTossers;
+		totalRowTossers.append(totalCountTossers);
 	}
 }
 
