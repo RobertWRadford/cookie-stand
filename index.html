@@ -7,17 +7,39 @@
   </head>
 
   <body>
-    <img id='fishPic' src="https://codefellows.github.io/code-201-guide/curriculum/class-06/lab/assets/salmon.png" style="width:787px;height:246px;position:absolute;">
+    <img id='chinook' src="images/chinook.jpg">
+    <img id='fishPic' src="images/salmon.png" style="width:393px;height:123px;position:absolute;">
+    <img id='actualFish' src="images/fish.jpg">
     <h1 id='titleHeader'>Salmon Cookies</h1>
+    <h2 id='locations'>Locations:</h2>
+      <ul id='storeLocations'>
+        <li>Seattle</li>
+        <li>Tokyo</li>
+        <li>Dubai</li>
+        <li>Paris</li>
+        <li>Lima</li>
+      </ul>
+    <p id = 'storeHours'>All stores are open from<br>&nbsp;&nbsp;&nbsp;6:00AM to 8:00PM</p>
+    <h3 id='contact'>Contact us:</h3>
+    <p id='contactMethods'>Don't @ me</p>
+
     <a id="linkToSales" href='sales.html'>Sales Charts</a>
+
+    <div>
+      <img id='cutter' src="images/cutter.jpeg">
+      <img id='family' src="images/family.jpg">
+      <img id='frostedCookie' src="images/frosted-cookie.jpg">
+      <img id='shirt' src="images/shirt.jpg">
+    </div>
+  
     <script>
     	function setFishCenter(){
     		var windowSize = [window.innerWidth, window.innerHeight];
-	    	var pushAmount = (windowSize[0] / 2) - (787/2);
+	    	var pushAmount = (windowSize[0] / 2) - (393/2);
 	    	var elementToPush = document.getElementById('fishPic');
 	    	elementToPush.style.left = pushAmount+"px";
     	}
-    	setFishCenter('fishPic', 787);
+    	setFishCenter();
 
     	window.onresize = setFishCenter;
     </script>

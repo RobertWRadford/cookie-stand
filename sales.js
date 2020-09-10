@@ -109,15 +109,6 @@ var dubai = new Store('Dubai', 11, 38, 3.7);
 var paris = new Store('Paris', 20, 38, 2.3);
 var lima = new Store('Lima', 2, 16, 4.6);
 
-times_DOM();
-
-for (var i = 0; i < stores.length; i++) {
-	salesHourly(stores[i]);
-	stores[i].renderStoreRow();
-}
-
-totals_DOM();
-
 function salesHourly(storeName) {
 
 	var customerCount = 0;
@@ -200,15 +191,18 @@ function totals_DOM(){
 	totalHeaderDup.textContent = 'Totals';
 	totalRowCookies.append(totalHeader);
 	totalRowTossers.append(totalHeaderDup);
-	for (var h = 6; h < 21; h++){
+	
+	loop1: for (var h = 6; h < 21; h++){
 		var totalCountCookies = document.createElement('td');
 		var totalCountTossers = document.createElement('td');
 		var tallyCookies = 0;
 		var tallyTossers = 0;
-		for (var s = 0; s < stores.length; s++){
+
+		loop2: for (var s = 0; s < stores.length; s++){
 			tallyCookies += stores[s].salesArr[h-6];
 			tallyTossers += stores[s].tossersNeeded[h-6];
 		}
+
 		totalCountCookies.textContent = tallyCookies;
 		totalRowCookies.append(totalCountCookies);
 		totalCountTossers.textContent = tallyTossers;
@@ -216,3 +210,11 @@ function totals_DOM(){
 	}
 }
 
+times_DOM();
+
+for (var i = 0; i < stores.length; i++) {
+	salesHourly(stores[i]);
+	stores[i].renderStoreRow();
+}
+
+totals_DOM();
