@@ -1,15 +1,107 @@
+#chinook {
+	width:393px;
+	height:183px;
+	position:fixed;
+	left:0%;
+}
+
+#actualFish {
+	width:393px;
+	height:183px;
+	position:fixed;
+	right:0%;
+}
+
 #titleHeader {
 	position: fixed;
 	left: 50%;
 	transform: translate(-50%);
-	margin-top: 280px;
-	font-size: 64px;
+	margin-top: 150px;
+	font-size: 48px;
 	color: DarkSalmon;
 }
+
+#locations {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	margin-top: 210px;
+	font-size: 36px;
+	color: DarkSalmon;
+}
+
+#storeLocations {
+	position: fixed;
+	left: 49%;
+	transform: translate(-50%);
+	margin-top: 260px;
+	font-size: 24px;
+	color: DarkSalmon;
+}
+
+#storeHours {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	margin-top: 400px;
+	font-size: 24px;
+	color: DarkSalmon;
+}
+
+#contact {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	margin-top: 460px;
+	font-size: 36px;
+	color: DarkSalmon;
+}
+
+#contactMethods {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%);
+	margin-top: 500px;
+	font-size: 24px;
+	color: DarkSalmon;
+}
+
 #linkToSales {
 	position: fixed;
 	left: 50%;
-	top: 50%;
-	font-size: 48px;
+	margin-top: 600px;
+	font-size: 24px;
 	transform: translate(-50%, -50%);
+}
+
+#frostedCookie {
+	width:393px;
+	height:183px;
+	position:fixed;
+	right:15%;
+	bottom:0%;
+}
+
+#cutter {
+	width:393px;
+	height:183px;
+	position:fixed;
+	left:15%;
+	bottom:0%;
+}
+
+#family {
+	width:393px;
+	height:243px;
+	position:fixed;
+	right:0%;
+	bottom:35%;
+}
+
+#shirt {
+	width:393px;
+	height:243px;
+	position:fixed;
+	left:0%;
+	bottom:35%;
 }
