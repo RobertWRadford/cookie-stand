@@ -33,16 +33,28 @@
     </div>
   
     <script>
-    	function setFishCenter(){
-    		var windowSize = [window.innerWidth, window.innerHeight];
-	    	var pushAmount = (windowSize[0] / 2) - (393/2);
-	    	var elementToPush = document.getElementById('fishPic');
-	    	elementToPush.style.left = pushAmount+"px";
-    	}
-    	setFishCenter();
+      var fishPicture = document.getElementById('fishPic');
+      var fishDimensions = fishPicture.getBoundingClientRect();
+      var fishDimensionsOld = fishPicture.offsetWidth;
 
-    	window.onresize = setFishCenter;
+      function setCenter(itemWidth, eleID){
+          var windowSize = [window.innerWidth, window.innerHeight];
+          var pushAmount = (windowSize[0] / 2) - (itemWidth/2);
+          var elementToPush = document.getElementById(eleID);
+          elementToPush.style.left = pushAmount+"px";
+      }
+
+      if (window.addEventListener) {
+          window.addEventListener('resize', function() {
+          setCenter(fishDimensions.width, 'fishPic');
+          }, false);
+      } else {
+          window.attachEvent('onresize', function() {
+          setCenter(fishDimensionsOld, 'fishPic');
+          });
+      }
+
+      setCenter(fishDimensions.width, 'fishPic');
     </script>
-    <script src="app.js" type="text/javascript"></script>
   </body>
 </html>

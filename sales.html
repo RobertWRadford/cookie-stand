@@ -12,6 +12,24 @@
     <section id="locations">
       <h1>Current Store Sales Reports</h1>
     </section>
+    <h1>Add a new store location:</h1>
+    <div id="form block">
+      <form id="newStoreRegistry">
+        <fieldset id='newStoreEntry'> 
+          <label for="location">Location:</label>
+            <input type="text" id="storeCity" name='storeCity' size='16' maxlength = '16' required />
+          <label for = "minCustomers">Lowest recorded customers per hour:</label>
+            <input id="minCustomers" name='minCustomers' type = 'number' size='16' maxlength = '16' min= '0' required />
+        </fieldset>
+        <fieldset id = 'newStoreEntry'>       
+          <label for = "maxCustomers">Highest recorded customers per hour:</label>
+            <input id="maxCustomers" name='maxCustomers' type = 'number' size='16' maxlength = '16' min= '0' required />          
+          <label for = "avgCookies">Average recorded quanitity of cookies per sale:</label>
+            <input id="avgCookies" name='avgCookies' type = 'number' step = '.1' min= '0' size='16' maxlength = '16' required />          
+        </fieldset>
+        <input type = 'submit' id = "submitButton" name = 'submitButton' value = "Submit" />
+      </form>
+    </div>
   <footer>
     <script src="sales.js" type="text/javascript"></script>
 	</footer>

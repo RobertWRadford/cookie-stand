@@ -80,10 +80,14 @@ Store.prototype.renderStoreRow = function(){
 	var otherDataTable = document.getElementById('anotherDataTable');
 
 	//Create store sales row
-	var storeRowCookie = document.createElement('tr');
-	dataTable.append(storeRowCookie);
-	var storeRowTosser = document.createElement('tr');
-	otherDataTable.append(storeRowTosser);
+	let storeRowCookie = dataTable.insertRow(-1);
+	// var storeRowCookie = document.createElement('tr');
+	// dataTable.append(storeRowCookie);
+	storeRowCookie.setAttribute('class', 'storeRow');
+	let storeRowTosser = otherDataTable.insertRow(-1);
+	// var storeRowTosser = document.createElement('tr');
+	// otherDataTable.append(storeRowTosser);
+	storeRowTosser.setAttribute('class', 'storeRow');
 
 	//attach cells
 	var storeNameCell = document.createElement('th');
@@ -210,11 +214,89 @@ function totals_DOM(){
 	}
 }
 
+//function calls for table
 times_DOM();
-
 for (var i = 0; i < stores.length; i++) {
 	salesHourly(stores[i]);
 	stores[i].renderStoreRow();
 }
-
 totals_DOM();
+
+
+var newStoreSubmit = document.getElementById('newStoreRegistry');
+
+function registerNewStore() {
+	//fetch table elements
+	var cookieTable = document.getElementById('dataTable');
+	var tosserTable = document.getElementById('anotherDataTable');
+	//Pull field entries
+	var storeVarName = document.getElementById('storeCity').value;
+	var newStoreMinCust = document.getElementById('minCustomers').value;
+	var newStoreMaxCust = document.getElementById('maxCustomers').value;
+	var newStoreAvgCookie = document.getElementById('avgCookies').value;
+	//check if store already exists
+	var oldStore = false;
+	for (var i = 0; i < stores.length; i++) {
+		if (stores[i].name == storeVarName) {
+			oldStore = true;
+			var indexVal = i+1;
+			//if it exists modify the object values
+			stores[i].minCust = newStoreMinCust;
+			stores[i].maxCust = newStoreMaxCust;
+			stores[i].avgCookies = newStoreAvgCookie;
+			stores[i].salesArr = [];
+			stores[i].tossersNeeded = [];
+			//run sales hourly for the store
+			salesHourly(stores[indexVal-1]);
+			//find the current table row index for that store
+			//remove the current row and attach a new row in that index
+			cookieTable.deleteRow(indexVal);
+			let storeRowCookie = cookieTable.insertRow(indexVal);
+			tosserTable.deleteRow(indexVal);
+			let storeRowTosser = tosserTable.insertRow(indexVal);
+			//duplicated portion of render method that adds the data cells
+			var storeNameCell = document.createElement('th');
+			var storeNameCellDup = document.createElement('th');
+			storeNameCell.textContent = stores[i].name;
+			storeNameCellDup.textContent = stores[i].name;
+			storeRowCookie.append(storeNameCell);
+			storeRowTosser.append(storeNameCellDup);
+			for (var j = 6; j < 21; j++){
+				var storeSales = document.createElement('td');
+				storeSales.textContent = stores[i].salesArr[j-6];
+				storeRowCookie.append(storeSales);
+				var storeTossers = document.createElement('td');
+				storeTossers.textContent = stores[i].tossersNeeded[j-6];
+				storeRowTosser.append(storeTossers);
+			}
+			//remove totals row to retally
+			cookieTable.deleteRow(-1);
+			tosserTable.deleteRow(-1);
+		}
+	}
+	if (oldStore == false) {
+	//initialize new store object
+	eval('var ' + storeVarName + '= new Store(\'' + storeVarName + '\',' + newStoreMinCust + ',' + newStoreMaxCust + ',' + newStoreAvgCookie + ')');
+	//run salesHourly for the new store
+	salesHourly(stores[stores.length-1]);
+	//remove total row
+	cookieTable.deleteRow(-1);
+	tosserTable.deleteRow(-1);
+	//render new store row
+	stores[stores.length-1].renderStoreRow();
+	}
+	//retally totals
+	totals_DOM();
+}
+
+if (newStoreSubmit.addEventListener) {
+	newStoreSubmit.addEventListener('submit', function(e) {
+		e.preventDefault();
+		registerNewStore();
+	}, false);
+} else {
+	newStoreSubmit.attachEvent('onsubmit', function(e) {
+		e.preventDefault();
+		registerNewStore();
+	});
+}
