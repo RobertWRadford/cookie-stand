@@ -29,9 +29,9 @@ table {
 }
 
 th, td {
-	padding: 8px;
-	border: 2px solid black;
-	font-size: 24px;
+	padding: 5px;
+	border: 1px solid black;
+	font-size: 16px;
 	text-align: center;
 }
 
@@ -40,5 +40,33 @@ th, td {
 }
 
 h1 {
-	font-size: 42px;
+	font-size: 28px;
+}
+
+#newStoreRegistry {
+	margin-left: 150px;
+}
+
+#newStoreRegistry > input {
+	vertical-align: 300%;
+	font-size: 16px;
+	margin-left: 5px;
+	height: 70px;
+}
+
+#newStoreEntry {
+	display: inline;
+	border: 1px solid black;
+}
+
+#newStoreEntry > input {
+	border: 1px solid black;
+	width: 250px;
+}
+
+#newStoreEntry > input, label {
+	display: block;
+	padding: 5px;
+	margin-top: 5px;
+	font-size: 16px;
 }
