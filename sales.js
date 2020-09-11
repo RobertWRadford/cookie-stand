@@ -115,13 +115,13 @@ var lima = new Store('Lima', 2, 16, 4.6);
 
 function salesHourly(storeName) {
 
-	var customerCount = 0;
 	var totalCookies = 0;
 	var totalTossers = 0;
 	var trafficRates = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4];
 	for (var i = 6; i < 20; i++){
 		//customerCount = Math.floor((Math.random() * (storeName.maxCust - storeName.minCust)) + storeName.minCust);
-		customerCount = Math.floor(trafficRates[i-6] * storeName.maxCust);
+		// customerCount = Math.max(Math.floor(trafficRates[i-6] * storeName.maxCust), storeName.minCust);
+		var customerCount = Math.floor( ( ( storeName.maxCust - storeName.minCust ) * trafficRates[i-6] ) + storeName.minCust );
 		if (customerCount / 20 <= 2) {
 			storeName.tossersNeeded.push(2);
 			totalTossers += 2;
@@ -129,7 +129,7 @@ function salesHourly(storeName) {
 			storeName.tossersNeeded.push(Math.ceil(customerCount / 20));
 			totalTossers += Math.ceil(customerCount / 20);
 		}
-		totalCookies += Math.floor(customerCount*storeName.avgCookies);
+		totalCookies += Math.floor(customerCount * storeName.avgCookies);
 		storeName.salesArr.push(Math.floor(customerCount * storeName.avgCookies));
 	}
 	storeName.salesArr.push(totalCookies);
@@ -231,9 +231,9 @@ function registerNewStore() {
 	var tosserTable = document.getElementById('anotherDataTable');
 	//Pull field entries
 	var storeVarName = document.getElementById('storeCity').value;
-	var newStoreMinCust = document.getElementById('minCustomers').value;
-	var newStoreMaxCust = document.getElementById('maxCustomers').value;
-	var newStoreAvgCookie = document.getElementById('avgCookies').value;
+	var newStoreMinCust = parseInt(document.getElementById('minCustomers').value);
+	var newStoreMaxCust = parseInt(document.getElementById('maxCustomers').value);
+	var newStoreAvgCookie = parseFloat(document.getElementById('avgCookies').value);
 	//check if store already exists
 	var oldStore = false;
 	for (var i = 0; i < stores.length; i++) {
@@ -246,6 +246,7 @@ function registerNewStore() {
 			stores[i].avgCookies = newStoreAvgCookie;
 			stores[i].salesArr = [];
 			stores[i].tossersNeeded = [];
+			console.log(stores[i]);
 			//run sales hourly for the store
 			salesHourly(stores[indexVal-1]);
 			//find the current table row index for that store
